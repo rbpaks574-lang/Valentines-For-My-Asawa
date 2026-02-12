@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentines My Pretty Asawa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* --- GLOBAL STYLES --- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #2c2c2c;
+  overflow-x: hidden;
+  background-color: #f7c1cc;
+}
+
+/* --- SECTION 1: HERO (TEXT FAR LEFT) --- */
+header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; 
+  text-align: left;
+  padding: 40px 6%; 
+  
+  /* BACKGROUND IMAGE */
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('dsa.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.hero-content {
+  background: none;
+  max-width: 650px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  margin: 0;
+  color: #ff2e63;
+  line-height: 1.1;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+}
+
+header p {
+  margin: 15px 0 0 0;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.scroll-hint { 
+  margin-top: 40px;
+  color: #ff2e63;
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* --- SECTION 2: GALLERY --- */
+.gallery-section {
+  background: #fff;
+  border-radius: 50px 50px 0 0;
+  padding: 80px 20px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 2;
+}
+
+.gallery-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #ff2e63;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  transition: transform 0.4s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.04);
+}
+
+/* --- BUTTON & SCROLLABLE MODAL --- */
+.love-icon {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.main-btn {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #ff5f7e, #ff2e63);
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  font-size: 1.3rem;
+  border-radius: 60px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 46, 99, 0.4);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: #fff5f7;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh; /* Limits height so it fits on screens */
+  overflow-y: auto;  /* Makes the content scrollable */
+  padding: 45px 35px;
+  border-radius: 35px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+}
+
+/* Custom Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ff5f7e;
+  border-radius: 10px;
+}
+
+/* --- VOICE TOGGLE --- */
+.voice-note {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.voice-btn {
+  background: #ff5f7e;
+  border: 2px solid #ff2e63;
+  color: white;
+  padding: 14px 35px;
+  border-radius: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.voice-btn.is-active {
+  background: #2ecc71;
+  border-color: #27ae60;
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  header { 
+    padding: 40px 8%; 
+    background-attachment: scroll; /* Prevents background issues on mobile */
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery img {
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="hero-content">
+    <h1>Ma Femme</h1>
+    <p>Happy Valentines Day <br>
+   Asawa ko</p>
+    <div class="scroll-hint">Scroll down to see ↓</div>
+  </div>
+</header>
+
+<section class="gallery-section">
+  <h2 class="gallery-title">Memories With My Love Love</h2>
+  <div class="gallery">
+    <img src="1.png" alt="Memory 1">
+    <img src="2.png" alt="Memory 2">
+    <img src="3.png" alt="Memory 3">
+    <img src="4.png" alt="Memory 4">
+    <img src="5.png" alt="Memory 5">
+    <img src="6.png" alt="Memory 6">
+    <img src="7.png" alt="Memory 7">
+    <img src="8.png" alt="Memory 8">
+  </div>
+
+  <div class="love-icon">
+    <button class="main-btn" onclick="openModal()">💌 For You Ma Femme </button>
+  </div>
+</section>
+
+<div class="modal" id="loveModal">
+  <div class="modal-content">
+    <span onclick="closeModal()" style="position:sticky; top:0; float:right; cursor:pointer; font-size:2rem; opacity:0.4; margin-top:-20px;">&times;</span>
+    <h2 style="font-family:'Playfair Display', serif; color:#ff2e63;">Ma Femme</h2>
+    
+    <div style="text-align: left; line-height: 1.6; color: #444;">
+      <p>My Pretty Asawa,</p>
+      <p>Happy Valentines Babyyy ko</p>
+      <p>I made this just for you my pretty asawaa kooo. i hope na kahit sa gantong paraan love is mapasaya kita baby ngayon valentines love
+        kahit wala me jan baby, super love na love kita asawa ko, hinde man to bagay, pera or bulaklak babyy, pero buong puso ko ginawa to love para sayo and i promise babyy na babawi ako sayo 
+        mahal na mahal kita sobra loveeee .
+      </p>
+      <p>Baby thank youu so much na sa bawat tapuhan, away and misunderstanding baby you still mag stay love and thank you so much love na kahit ganto me you still choose me love and  thank you
+        thank you so much love na always mo me pinag tatanggol love thank you so much love sa mga bagay na binigbigay mo sakin babyy and i promise you na iingatan ko love sobraa mahal na mahal kita
+        always lovee.
+      <p>
+        Mahal na mahal kita always love, dikita iiwan i promisee babyy marami pa tayo pag dadaan love kahit ano mang yari baby mag stay ako okay mahal na mahal kita love sobraa baby.
+        And im here lang babyy ha dito lang me sa tabi mo babyy.
+      </p>
+      <p> love di ako aalis baby kahit ano mang yari araw araw kita pipiliin love ha mahal na mahal kita, yung pag mamahal ko sayo ay hinde
+        hinde masusukat love and i wish ko baby sayo na sana matupad mo lahat ng gusto mo baby dito lang lang ako sa likod mo love papanoodin ka mag tagumpay sa buhay mo baby im here lang baby,
+        sa mga time na wala kana makapitan or mga time na sobra dilim na nilalakad mo love hayaan mo ako tutulong sayo tumayo ulit baby, hayaan moko ituro ulit sayo ang daan love and hayaan moko, 
+        i support ka sa bawat laban mo love and im here na always proud na proud sayoo "EYY PROUD BF ANG PAKS HEHE" babyyyy ko iloveyouusomuch lovee and sana babyy napasaya kita sa gantong paraan love 
+        i promise baby sa susunod mag kasama na tayo mag celibrate ng valentines babyyyy</p>
+      <P>Im always with youu love smile🥰🥰🥰</P>
+    <div class="voice-note">
+      <audio id="voiceAudio" src="Standard recording 11.mp3"></audio>
+      <button class="voice-btn" id="voiceToggle" onclick="toggleVoice()">
+        <span id="btnIcon">▶</span> <span id="btnText">Play Voice</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const audio = document.getElementById('voiceAudio');
+const btn = document.getElementById('voiceToggle');
+const btnIcon = document.getElementById('btnIcon');
+const btnText = document.getElementById('btnText');
+const modal = document.getElementById('loveModal');
+
+function openModal() {
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  audio.pause();
+  audio.currentTime = 0;
+  resetButton();
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function toggleVoice() {
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('is-active');
+    btnIcon.textContent = '⏸';
+    btnText.textContent = 'Playing...';
+  } else {
+    audio.pause();
+    resetButton();
+  }
+}
+
+function resetButton() {
+  btn.classList.remove('is-active');
+  btnIcon.textContent = '▶';
+  btnText.textContent = 'Play Voice';
+}
+
+audio.onended = resetButton;
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+</script>
+
+</body>
+</html>
